@@ -1,6 +1,6 @@
 {
   "buttons": {
-    "back": "Назад",
+    "//a": "Кнопки основного меню",
     "student": "Студент",
     "applicant": "Абитуриент",
     "alumni_club": "Выпускник\nAlumni club",
@@ -8,6 +8,9 @@
     "social_media": "Социальные сети",
     "contacts": "Контакты",
     "feedback": "Предложения, замечания по Боту",
+    "back": "Назад",
+
+    "//b": "Кнопки меню студентов",
     "platonus": "Platonus",
     "corporate_mail": "Корпоративная почта",
     "institute_contacts": "Контакты институтов",
@@ -16,14 +19,20 @@
     "reset_password": "Сброс пароля",
     "accounting": "Бухгалтерия",
     "faq": "Вопрос-ответ",
+
+    "//с": "Кнопки меню абитуриентов",
     "bachelor_degree": "Бакалавриат",
     "master_degree": "Магистратура",
     "doctoral_degree": "Докторантура",
     "college": "Колледж",
     "entrance_exam_courses": "Курсы ЕНТ",
+
+    "//d": "Кнопки меню выпускников",
     "events": "Мероприятия",
     "join_club": "Вступить в клуб",
     "alumni_contacts": "Контакты Alumni club",
+
+    "//e": "Кнопки меню сотрудников",
     "dit_application": "Заявка в ДИТ",
     "documents_templates": "Документы, шаблоны",
     "qa": "Вопросы, ответы"

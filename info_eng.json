@@ -1,13 +1,16 @@
 {
   "buttons": {
-    "back": "Back",
+    "//a": "Main Menu Buttons",
     "student": "Student",
     "applicant": "Applicant",
-    "alumni_club": "Alumni Club",
+    "alumni_club": "Graduate\nAlumni club",
     "employee": "Employee",
     "social_media": "Social Media",
     "contacts": "Contacts",
-    "feedback": "Feedback",
+    "feedback": "Suggestions, Feedback on the Bot",
+    "back": "Back",
+
+    "//b": "Student Menu Buttons",
     "platonus": "Platonus",
     "corporate_mail": "Corporate Mail",
     "institute_contacts": "Institute Contacts",
@@ -16,15 +19,23 @@
     "reset_password": "Reset Password",
     "accounting": "Accounting",
     "faq": "FAQ",
+
+    "//c": "Applicant Menu Buttons",
     "bachelor_degree": "Bachelor's Degree",
     "master_degree": "Master's Degree",
     "doctoral_degree": "Doctoral Degree",
     "college": "College",
     "entrance_exam_courses": "Entrance Exam Courses",
+
+    "//d": "Graduate Menu Buttons",
     "events": "Events",
+    "join_club": "Join Club",
+    "alumni_contacts": "Alumni Club Contacts",
+
+    "//e": "Employee Menu Buttons",
     "dit_application": "DIT Application",
     "documents_templates": "Documents, Templates",
-    "qa": "Q&A"
+    "qa": "Questions, Answers"
   },
   "general_info": {
     "greeting": "Welcome to the bot of Almaty University of Power Engineering and Telecommunications named after Gumarbek Daukeev! 👋\n\nHere you can get general information about the university and contact the Admissions Office. 📚✉️\n\nChoose the relevant section in the menu to learn more. 👇",

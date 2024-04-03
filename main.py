@@ -52,6 +52,8 @@ async def process_language(message: types.Message):
     global uni_bot_data
     uni_bot_data = load_language_data(selected_language)
 
+    print(uni_bot_data)
+
     # Создаем кнопки для меню
     btn_stud = KeyboardButton(text=uni_bot_data["buttons"]["student"]) #Студент
     btn_entr = KeyboardButton(text=uni_bot_data["buttons"]["applicant"]) #Абитуриент
@@ -132,6 +134,7 @@ async def process_language(message: types.Message):
 
     await message.answer(uni_bot_data["general_info"]["greeting"], reply_markup=menu_markup)
 
+# Обработчики нажатия на кнопки основного меню
 # Обработчик нажатия на кнопку "Студент"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["student"])
 async def stud(message: types.Message):
@@ -166,7 +169,8 @@ async def info(message: types.Message):
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["feedback"])
 async def feedback_handler(message: types.Message):
     await message.answer("Есть предложения или замечания по работе Бота? Пожалуйста, оставьте свой отзыв [здесь](https://forms.gle/c4zobjd6ob3DzXHJA).", parse_mode="Markdown")
-  
+
+# Обработчики нажатия на кнопки в меню студентам
 # Обработчик нажатия на кнопки со ссылками
 @dp.message_handler(lambda message: message.text in [uni_bot_data["buttons"]["platonus"], uni_bot_data["buttons"]["corporate_mail"], uni_bot_data["buttons"]["rector_blog"], uni_bot_data["buttons"]["reset_password"]])
 async def send_link(message: types.Message):
@@ -219,6 +223,7 @@ async def send_admission_link(message: types.Message):
         await message.answer("Курсы ЕНТ помогут в подготовке к единому национальному тестированию. [Подробнее здесь](https://aues.edu.kz/ru/kursy-ent)", parse_mode="Markdown")
 
 # Обработчики нажатия на кнопки в меню выпускников
+# Обработчик нажатия на кнопку Мероприятия
 @dp.message_handler(lambda message: message.text in [uni_bot_data["buttons"]["events"]])
 async def send_event_link(message: types.Message):
     if message.text == uni_bot_data["buttons"]["events"]:
@@ -235,10 +240,12 @@ async def send_event_link(message: types.Message):
         # Send the caption message
         await bot.send_message(message.chat.id, uni_bot_data["alumni_club"]["events_details"])
 
+# Обработчик нажатия на кнопку Вступить в клуб
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["join_club"])
 async def join_club(message: types.Message):
     await message.answer("Извините, запрошенная вами информация недоступна.")
 
+  # Обработчик нажатия на кнопку Контакты Alumni club
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["alumni_contacts"])
 async def alumni_contacts(message: types.Message):
     await message.answer("Извините, запрошенная вами информация недоступна.")

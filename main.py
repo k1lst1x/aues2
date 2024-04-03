@@ -106,11 +106,15 @@ async def process_language(message: types.Message):
 
     # Создаем кнопки для меню выпускников
     btn_alum1 = KeyboardButton(text=uni_bot_data["buttons"]["events"])
+    btn_alum2 = KeyboardButton(text=uni_bot_data["buttons"]["join_club"])
+    btn_alum3 = KeyboardButton(text=uni_bot_data["buttons"]["alumni_contacts"])
 
     # Создаем клавиатуру с кнопками для меню выпускников
     global alumni_menu_markup
     alumni_menu_markup = ReplyKeyboardMarkup(resize_keyboard=True)
     alumni_menu_markup.add(btn_alum1)
+    alumni_menu_markup.add(btn_alum2)
+    alumni_menu_markup.add(btn_alum3)
     alumni_menu_markup.add(btn_stud9)
 
     # Создаем кнопки для меню сотрудников
@@ -214,7 +218,7 @@ async def send_admission_link(message: types.Message):
     elif message.text == uni_bot_data["buttons"]["entrance_exam_courses"]:
         await message.answer("Курсы ЕНТ помогут в подготовке к единому национальному тестированию. [Подробнее здесь](https://aues.edu.kz/ru/kursy-ent)", parse_mode="Markdown")
 
-# Обработчик нажатия на кнопки меню выпускников
+# Обработчики нажатия на кнопки в меню выпускников
 @dp.message_handler(lambda message: message.text in [uni_bot_data["buttons"]["events"]])
 async def send_event_link(message: types.Message):
     if message.text == uni_bot_data["buttons"]["events"]:
@@ -231,6 +235,15 @@ async def send_event_link(message: types.Message):
         # Send the caption message
         await bot.send_message(message.chat.id, uni_bot_data["alumni_club"]["events_details"])
 
+@dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["join_club"])
+async def join_club(message: types.Message):
+    await message.answer("Извините, запрошенная вами информация недоступна.")
+
+@dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["alumni_contacts"])
+async def alumni_contacts(message: types.Message):
+    await message.answer("Извините, запрошенная вами информация недоступна.")
+
+# Обработчики нажатия на кнопки в меню сотрудников
 # Обработчик нажатия на кнопку "Заявка в ДИТ"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["dit_application"])
 async def dit_application(message: types.Message):

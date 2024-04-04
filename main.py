@@ -136,22 +136,22 @@ async def process_language(message: types.Message):
 # Обработчик нажатия на кнопку "Студент"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["student"])
 async def stud(message: types.Message):
-    await bot.send_message(message.chat.id, "Студентам", reply_markup=stud_menu_markup)
+    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["for_students"], reply_markup=stud_menu_markup)
 
 # Обработчик нажатия на кнопку "Абитуриент"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["applicant"])
 async def entr(message: types.Message):
-    await bot.send_message(message.chat.id, "Программы", reply_markup=applicant_menu_markup)
+    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["programs"], reply_markup=applicant_menu_markup)
 
 # Обработчик нажатия на кнопку "Выпускник Alumni club"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["alumni_club"])
 async def alum(message: types.Message):
-    await bot.send_message(message.chat.id, "Ассоциация выпускников - подразделение, организующее взаимодействие выпускников с вузом.", reply_markup=alumni_menu_markup)
+    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["alumni_association"], reply_markup=alumni_menu_markup)
 
 # Обработчик нажатия на кнопку "Сотрудник"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["employee"])
 async def empl(message: types.Message):
-    await bot.send_message(message.chat.id, "Сотрудникам", reply_markup=employee_menu_markup)
+    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["for_employees"], reply_markup=employee_menu_markup)
 
 # Обработчик нажатия на кнопку "Социальные сети"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["social_media"])
@@ -166,20 +166,20 @@ async def info(message: types.Message):
 # Обработчик нажатия на кнопку "Предложения, замечания по Боту"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["feedback"])
 async def feedback_handler(message: types.Message):
-    await message.answer("Есть предложения или замечания по работе Бота? Пожалуйста, оставьте свой отзыв [здесь](https://forms.gle/c4zobjd6ob3DzXHJA).", parse_mode="Markdown")
+    await message.answer(uni_bot_data["general_info"]["bot_feedback"], parse_mode="Markdown")
 
 # Обработчики нажатия на кнопки в меню студентам
 # Обработчик нажатия на кнопки со ссылками
 @dp.message_handler(lambda message: message.text in [uni_bot_data["buttons"]["platonus"], uni_bot_data["buttons"]["corporate_mail"], uni_bot_data["buttons"]["rector_blog"], uni_bot_data["buttons"]["reset_password"]])
 async def send_link(message: types.Message):
     if message.text == uni_bot_data["buttons"]["platonus"]:
-        await message.answer("Система управления учебным процессом АУЭС: [Platonus](https://edu2.aues.kz/)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["platonus_system"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["corporate_mail"]:
-        await message.answer("Единая система корпоративной электронной почты: [Корпоративная почта](https://www.google.com/intl/ru/gmail/about/)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["corporate_email"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["rector_blog"]:
-        await message.answer("Информация об университете, ключевые сведения, обращение ректора: [Блог ректора](https://aues.edu.kz/ru/site/blog-rektora)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["university_info"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["reset_password"]:
-        await message.answer("Если забыли или хотите поменять пароль на своей почте, жмите сюда: [Сброс пароля](https://recovery.aues.kz/new-sbros.php)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["password_reset"], parse_mode="Markdown")
 
 # Обработчик нажатия на кнопку "Контакты институтов" (если необходимо)
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["institute_contacts"])
@@ -210,15 +210,15 @@ async def back(message: types.Message):
 @dp.message_handler(lambda message: message.text in [uni_bot_data["buttons"]["bachelor_degree"], uni_bot_data["buttons"]["master_degree"], uni_bot_data["buttons"]["doctoral_degree"], uni_bot_data["buttons"]["college"], uni_bot_data["buttons"]["entrance_exam_courses"]])
 async def send_admission_link(message: types.Message):
     if message.text == uni_bot_data["buttons"]["bachelor_degree"]:
-        await message.answer("Информация для поступления в бакалавриат смотреть [здесь](https://aues.edu.kz/ru/bachelor)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["bachelor_admission_info"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["master_degree"]:
-        await message.answer("Информация для поступления в магистратуру смотреть [здесь](https://aues.edu.kz/ru/magistracy)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["master_admission_info"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["doctoral_degree"]:
-        await message.answer("Информация для поступления в докторантуру смотреть [здесь](https://aues.edu.kz/ru/doctorate)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["doctorate_admission_info"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["college"]:
-        await message.answer("Информация для поступления в колледж смотреть [здесь](https://aues.edu.kz/ru/site/college)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["college_admission_info"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["entrance_exam_courses"]:
-        await message.answer("Курсы ЕНТ помогут в подготовке к единому национальному тестированию. [Подробнее здесь](https://aues.edu.kz/ru/kursy-ent)", parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["ent_courses_info"], parse_mode="Markdown")
 
 # Обработчики нажатия на кнопки в меню выпускников
 # Обработчик нажатия на кнопку Мероприятия
@@ -227,12 +227,12 @@ async def send_event_link(message: types.Message):
     if message.text == uni_bot_data["buttons"]["events"]:
         # Send the media group
         media = types.MediaGroup()
-        media.attach_photo(types.InputFile('data/photo_1.jpg'), 'Дискуссия попечительского совета АУЭС о кадровом голоде в отрасли')
-        media.attach_photo(types.InputFile('data/photo_4.jpg'), 'Встреча выпускников 2001-2002 годов в Energo University')
-        media.attach_photo(types.InputFile('data/photo_5.jpg'), 'Встреча выпускника "Alumni club ЭНЕРГО" в Energo University')
-        media.attach_photo(types.InputFile('data/photo_6.jpg'), 'Двойное мероприятие в рамках Alumni club в Energo University')
-        media.attach_photo(types.InputFile('data/photo_7_1.jpg'), 'Встреча студентов с основателем Supros engineering & Supply')
-        media.attach_photo(types.InputFile('data/photo_7_2.jpg'), 'Встреча студентов с основателем Supros engineering & Supply')
+        media.attach_photo(types.InputFile('data/photo_1.jpg'), uni_bot_data["general_info"]["board_of_trustees_discussion"])
+        media.attach_photo(types.InputFile('data/photo_4.jpg'), uni_bot_data["general_info"]["alumni_meeting_2001_2002"])
+        media.attach_photo(types.InputFile('data/photo_5.jpg'), uni_bot_data["general_info"]["alumni_club_meeting"])
+        media.attach_photo(types.InputFile('data/photo_6.jpg'), uni_bot_data["general_info"]["double_event_in_alumni_club"])
+        media.attach_photo(types.InputFile('data/photo_7_1.jpg'), uni_bot_data["general_info"]["students_meeting_with_founder"])
+        media.attach_photo(types.InputFile('data/photo_7_2.jpg'), uni_bot_data["general_info"]["students_meeting_with_founder"])
         await bot.send_media_group(message.chat.id, media=media)
 
         # Send the caption message

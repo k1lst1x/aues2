@@ -52,8 +52,6 @@ async def process_language(message: types.Message):
     global uni_bot_data
     uni_bot_data = load_language_data(selected_language)
 
-    print(uni_bot_data)
-
     # Создаем кнопки для меню
     btn_stud = KeyboardButton(text=uni_bot_data["buttons"]["student"]) #Студент
     btn_entr = KeyboardButton(text=uni_bot_data["buttons"]["applicant"]) #Абитуриент
@@ -206,7 +204,7 @@ async def faq(message: types.Message):
 # Обработчик нажатия на кнопку "Назад" (если необходимо)
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["back"])
 async def back(message: types.Message):
-    await message.answer("Возвращаемся в главное меню", reply_markup=menu_markup)
+    await message.answer(uni_bot_data["general_info"]["back"], reply_markup=menu_markup)
 
 # Обработчик нажатия на кнопки меню абитуриентов
 @dp.message_handler(lambda message: message.text in [uni_bot_data["buttons"]["bachelor_degree"], uni_bot_data["buttons"]["master_degree"], uni_bot_data["buttons"]["doctoral_degree"], uni_bot_data["buttons"]["college"], uni_bot_data["buttons"]["entrance_exam_courses"]])
@@ -248,7 +246,7 @@ async def join_club(message: types.Message):
   # Обработчик нажатия на кнопку Контакты Alumni club
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["alumni_contacts"])
 async def alumni_contacts(message: types.Message):
-    await message.answer("Извините, запрошенная вами информация недоступна.")
+    await message.answer(uni_bot_data["alumni_club"]["alumni_contacts"], parse_mode="Markdown")
 
 # Обработчики нажатия на кнопки в меню сотрудников
 # Обработчик нажатия на кнопку "Заявка в ДИТ"

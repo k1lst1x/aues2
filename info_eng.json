@@ -5,6 +5,7 @@
     "applicant": "Applicant",
     "alumni_club": "Graduate\nAlumni club",
     "employee": "Employee",
+    "restore_id_card": "Restore ID Card",
     "social_media": "Social Media",
     "contacts": "Contacts",
     "feedback": "Suggestions, Feedback on the Bot",
@@ -39,6 +40,7 @@
   },
   "general_info": {
     "greeting": "Welcome to the Energo University (AUES) bot! 👋\n\nHere you can get general information about the university and contact the Admissions Office. 📚✉️\n\nChoose the relevant section in the menu to learn more. 👇",
+    "restore_id_card": "To restore your ID card, follow these steps:\n\n1. Follow the [link](https://kaspi.kz/pay/Universities-v2?region_id=18&subservice_id=8181&started_from=instruction_qr).\n2. Fill in the required fields.\n3. Make the payment.\n4. Share the receipt via email using the 'Share' button to idcard@aues.kz.\n\nAfter the payment, your ID card will be ready the next day.\n\nNote: It is not allowed to send the receipt as a screenshot via email.",
     "contacts": "🌟📌 Contact information of the Almaty University of Energy and Communications named after Gumarbek Daukeev 🌟:\n\n📍 Address: 050013, Republic of Kazakhstan, Almaty, A. Baitursynov St. 126/1 🏢\n☎️ Call-center: +7(727)3231175 ☎️\n📧 E-mail: aues@aues.kz 📩\n🌐 Website: aues.edu.kz 🌐\n\n🏫 Admissions Office:\n📞 +7 (707) 600 64 93 📞\n📞 +7 (727) 323 11 75 (ext. 1301) 📞\n📧 pk@aues.kz 📧",
     "back": "You have returned to the main menu.",
     "social": "🌟📌 *Social Media of Almaty University of Power Engineering and Telecommunications named after Gumarbek Daukeev* 🌟:\n\n📷 [Instagram](https://www.instagram.com/aues_university/) - follow our latest photos and stories 📸\n🎥 [YouTube](https://www.youtube.com/c/AuesUniversity) - subscribe to our channel for videos about our university life 🎬\n📘 [Facebook](https://www.facebook.com/aues.university) - become part of our community on Facebook 📚\n📲 [Telegram](https://t.me/auesuni) - join our Telegram channel for quick communication and updates 📱\n🎵 [TikTok](https://www.tiktok.com/@aues_uni) - watch our fun and creative videos on TikTok 🎶\n\n📣 *Additional communication channels:*\n[Telegram channel for applicants](https://t.me/auesuniversity) 🎓",
@@ -61,6 +63,7 @@
     "alumni_club_meeting": "Meeting of the Alumni Club 'ENERGO' at Energo University",
     "double_event_in_alumni_club": "Double event within the framework of the Alumni Club at Energo University",
     "students_meeting_with_founder": "Meeting of students with the founder of Supros Engineering & Supply",
+    "dit_application_link": "Link to submit an application to DIT: [here](https://aueskz0.sharepoint.com/sites/helpdesk_test/SitePages/ITHelpdeskHome.aspx)",
     "tech_works": "Currently empty"
   },
   "alumni_club": {

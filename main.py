@@ -57,6 +57,7 @@ async def process_language(message: types.Message):
     btn_entr = KeyboardButton(text=uni_bot_data["buttons"]["applicant"]) #Абитуриент
     btn_alum = KeyboardButton(text=uni_bot_data["buttons"]["alumni_club"]) #Алумни
     btn_empl = KeyboardButton(text=uni_bot_data["buttons"]["employee"]) #Сотрудник
+    btn_idcard = KeyboardButton(text=uni_bot_data["buttons"]["restore_id_card"]) #Восстановить ID-карту
     btn_social = KeyboardButton(text=uni_bot_data["buttons"]["social_media"]) #Социальные сети
     btn_info = KeyboardButton(text=uni_bot_data["buttons"]["contacts"]) #Контакты
     btn_fb = KeyboardButton(text=uni_bot_data["buttons"]["feedback"]) #Предложения, замечания по Боту
@@ -66,6 +67,7 @@ async def process_language(message: types.Message):
     menu_markup = ReplyKeyboardMarkup(resize_keyboard=True)
     menu_markup.row(btn_stud, btn_entr)
     menu_markup.row(btn_alum, btn_empl)
+    menu_markup.row(btn_idcard)
     menu_markup.add(btn_social)
     menu_markup.add(btn_info)
     menu_markup.add(btn_fb)
@@ -152,6 +154,11 @@ async def alum(message: types.Message):
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["employee"])
 async def empl(message: types.Message):
     await bot.send_message(message.chat.id, uni_bot_data["general_info"]["for_employees"], reply_markup=employee_menu_markup)
+
+# Обработчик нажатия на кнопку "Социальные сети"
+@dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["restore_id_card"])
+async def idcard(message: types.Message):
+    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["restore_id_card"], parse_mode="Markdown")
 
 # Обработчик нажатия на кнопку "Социальные сети"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["social_media"])
@@ -252,7 +259,7 @@ async def alumni_contacts(message: types.Message):
 # Обработчик нажатия на кнопку "Заявка в ДИТ"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["dit_application"])
 async def dit_application(message: types.Message):
-    await message.answer("Извините, запрошенная вами информация недоступна.")
+    await message.answer(uni_bot_data["general_info"]["dit_application_link"], parse_mode="Markdown")
 
 # Обработчик нажатия на кнопку "Документы, шаблоны"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["documents_templates"])

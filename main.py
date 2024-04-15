@@ -6,17 +6,68 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 import config as cfg
 import markups as nav
 import json
+import datetime
 
 API_TOKEN = cfg.TOKEN
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
+# Function to load data from database.json
+def load_database_data():
+    file_name = "database.json"
+    with open(file_name, "r", encoding="utf-8") as json_file:
+        return json.load(json_file)
+
+# Function to save data to database.json
+def save_database_data(data):
+    file_name = "database.json"
+    with open(file_name, "w", encoding="utf-8") as json_file:
+        json.dump(data, json_file, indent=4)
+
 # Initialize bot and dispatcher
 #PROXY_URL = 'http://proxy.server:3128'
 #bot = Bot(token=cfg.TOKEN, proxy=PROXY_URL)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+db = load_database_data()
+
+# Function to add a new user to the database
+def add_user(user_id, active=True):
+    new_user = {
+        "id": len(db['users']) + 1,
+        "user_id": user_id,
+        "active": active
+    }
+    db['users'].append(new_user)
+    save_database_data(db)
+
+# Function to check if a user exists based on user_id
+def user_exists(user_id):
+    for user in db['users']:
+        if user['user_id'] == user_id:
+            return True
+    return False
+
+# Function to set active status for a user
+def set_active(user_id, active):
+    for user in db['users']:
+        if user['user_id'] == user_id:
+            user['active'] = active
+            save_database_data(db)
+            return True
+    return False
+
+# Function to get users based on user_id and active status
+def get_users(user_id=None, active=None):
+    filtered_users = []
+
+    for user in db['users']:
+        if (user_id is None or user['user_id'] == user_id) and \
+           (active is None or user['active'] == active):
+            filtered_users.append(user)
+
+    return filtered_users
 
 # Создаем функцию для загрузки JSON-файла с данными
 def load_language_data(language_code):
@@ -35,8 +86,61 @@ async def cats(message: types.Message):
 # Обработчик команды /start
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    # Отправляем сообщение с просьбой выбрать язык
-    await message.answer("🌟 Пожалуйста, выберите предпочитаемый язык интерфейса 🌐\n\n🌍 Интерфейстің тілін таңдауыңызды сұраймыз 📣\n\n🌟 Please select your preferred interface language 🌐", reply_markup=nav.language_keyboard)
+    if message.chat.type == 'private':
+      if not user_exists(message.from_user.id):
+        add_user(message.from_user.id)
+      # Отправляем сообщение с просьбой выбрать язык
+      await message.answer("🌟 Пожалуйста, выберите предпочитаемый язык интерфейса 🌐\n\n🌍 Интерфейстің тілін таңдауыңызды сұраймыз 📣\n\n🌟 Please select your preferred interface language 🌐", reply_markup=nav.language_keyboard)
+
+# Обработчик команды /sendall
+@dp.message_handler(commands=['sendall'])
+async def sendall(message: types.Message):
+  if message.chat.type == 'private':
+    if (message.from_user.id == 350378347 or message.from_user.id == 137858267):
+      text = message.text[9:]
+      users = get_users()
+      for row in users:
+        try:
+          await bot.send_message(row['user_id'], text)
+          if row['active'] != True:
+            set_active(row['user_id'], True)
+        except:
+          set_active(row['user_id'], False)
+      await bot.send_message(message.from_user.id, "Успешная рассылка")
+
+# Function to extract the current month and year
+def get_current_month_and_year():
+    now = datetime.datetime.now()
+    return now.strftime("%B"), now.year
+
+# Function to collect statistics data from the db dictionary
+def collect_statistics(db):
+    total_users = len(db['users'])
+    total_active_users = sum(1 for user in db['users'] if user['active'])
+    return total_users, total_active_users
+
+# Обработчик команды /statistics
+@dp.message_handler(commands=['statistics'])
+async def statistics(message: types.Message):
+    if message.chat.type == 'private':
+        if (message.from_user.id == 350378347 or message.from_user.id == 137858267):
+            try:
+                # Extract current month and year
+                current_month, current_year = get_current_month_and_year()
+
+                # Collect statistics data from the db dictionary
+                total_users, total_active_users = collect_statistics(db)
+
+                # Build the message with statistics
+                statistics_message = f"📊 Statistics for {current_month} {current_year} 📊\n\n"
+                statistics_message += f"Total Users: {total_users}\n"
+                statistics_message += f"Total Active Users: {total_active_users}\n"
+
+                # Send the message with statistics
+                await message.reply(statistics_message)
+
+            except Exception as e:
+                await message.reply(f"An error occurred: {str(e)}")
 
 # Обработчик нажатий на кнопки клавиатуры
 @dp.message_handler(lambda message: message.text in ["Қазақша", "Русский", "English"])

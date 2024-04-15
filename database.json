@@ -1,0 +1,54 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "user_id": "user123",
+            "active": false
+        },
+        {
+            "id": 2,
+            "user_id": "user456",
+            "active": false
+        },
+        {
+            "id": 3,
+            "user_id": "user789",
+            "active": false
+        },
+        {
+            "id": 4,
+            "user_id": 350378347,
+            "active": true
+        },
+        {
+            "id": 5,
+            "user_id": 1602418335,
+            "active": true
+        },
+        {
+            "id": 6,
+            "user_id": 5886094845,
+            "active": true
+        },
+        {
+            "id": 7,
+            "user_id": 716132125,
+            "active": true
+        },
+        {
+            "id": 8,
+            "user_id": 948867571,
+            "active": true
+        },
+        {
+            "id": 9,
+            "user_id": 1573905183,
+            "active": true
+        },
+        {
+            "id": 10,
+            "user_id": 137858267,
+            "active": true
+        }
+    ]
+}

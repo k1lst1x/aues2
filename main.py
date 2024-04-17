@@ -259,15 +259,15 @@ async def alum(message: types.Message):
 async def empl(message: types.Message):
     await bot.send_message(message.chat.id, uni_bot_data["general_info"]["for_employees"], reply_markup=employee_menu_markup)
 
-# Обработчик нажатия на кнопку "Социальные сети"
+# Обработчик нажатия на кнопку "Восстановить ID-карту"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["restore_id_card"])
 async def idcard(message: types.Message):
-    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["restore_id_card"], parse_mode="Markdown")
+    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["restore_id_card"], parse_mode="Markdown", disable_web_page_preview=True)
 
 # Обработчик нажатия на кнопку "Социальные сети"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["social_media"])
 async def social(message: types.Message):
-    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["social"], parse_mode="Markdown")
+    await bot.send_message(message.chat.id, uni_bot_data["general_info"]["social"], parse_mode="Markdown", disable_web_page_preview=True)
 
 # Обработчик нажатия на кнопку "Контакты"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["contacts"])
@@ -277,7 +277,7 @@ async def info(message: types.Message):
 # Обработчик нажатия на кнопку "Предложения, замечания по Боту"
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["feedback"])
 async def feedback_handler(message: types.Message):
-    await message.answer(uni_bot_data["general_info"]["bot_feedback"], parse_mode="Markdown")
+    await message.answer(uni_bot_data["general_info"]["bot_feedback"], parse_mode="Markdown", disable_web_page_preview=True)
 
 # Обработчики нажатия на кнопки в меню студентам
 # Обработчик нажатия на кнопки со ссылками
@@ -286,7 +286,7 @@ async def send_link(message: types.Message):
     if message.text == uni_bot_data["buttons"]["platonus"]:
         await message.answer(uni_bot_data["general_info"]["platonus_system"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["corporate_mail"]:
-        await message.answer(uni_bot_data["general_info"]["corporate_email"], parse_mode="Markdown")
+        await message.answer(uni_bot_data["general_info"]["corporate_email"], parse_mode="Markdown", disable_web_page_preview=True)
     elif message.text == uni_bot_data["buttons"]["rector_blog"]:
         await message.answer(uni_bot_data["general_info"]["university_info"], parse_mode="Markdown")
     elif message.text == uni_bot_data["buttons"]["reset_password"]:
@@ -300,7 +300,7 @@ async def contacts(message: types.Message):
 # Обработчик нажатия на кнопку "ЦАК" (если необходимо)
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["tsak"])
 async def tsak(message: types.Message):
-    await message.answer(uni_bot_data["student_info"]["tsak"], parse_mode="Markdown")
+    await message.answer(uni_bot_data["student_info"]["tsak"], parse_mode="Markdown", disable_web_page_preview=True)
 
 # Обработчик нажатия на кнопку "Бухгалтерия" (если необходимо)
 @dp.message_handler(lambda message: message.text == uni_bot_data["buttons"]["accounting"])
